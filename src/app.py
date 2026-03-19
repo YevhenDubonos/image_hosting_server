@@ -4,11 +4,11 @@ import os
 import json
 import io
 import re
-#from validators import validate_image_file
-#from file_handler import save_file, delete_file
-#from database import DatabaseManager
+from validators import validate_image_file
+from file_handler import save_file, delete_file
+from database import DatabaseManager
 
-#db = DatabaseManager()
+db = DatabaseManager()
 
 
 class ImageServerHandler(http.server.BaseHTTPRequestHandler):
@@ -213,7 +213,7 @@ class ImageServerHandler(http.server.BaseHTTPRequestHandler):
 
 def run_server(port=8000):
     port = int(os.environ.get('PORT', port))
-    #db.connect()
+    db.connect()
     try:
         with socketserver.TCPServer(("", port), ImageServerHandler) as httpd:
             print(f"🚀 Server running on port {port} ...")
